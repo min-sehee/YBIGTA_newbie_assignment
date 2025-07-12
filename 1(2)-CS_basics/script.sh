@@ -1,9 +1,10 @@
 
 # anaconda(또는 miniconda)가 존재하지 않을 경우 설치해주세요!
 curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o Miniconda3-latest-Linux-x86_64.sh
-sudo chmod +x Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh
+chmod +x Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda3
 export PATH="$HOME/miniconda3/bin:$PATH"
+eval "$($HOME/miniconda3/bin/conda shell.bash hook)"
 
 
 # Conda 환셩 생성 및 활성화
@@ -36,7 +37,7 @@ for file in *.py; do
 done
 
 # conda.yml 파일 생성
-conda env export > conda.yml
+conda env export > ../conda.yml
 
 # 가상환경 비활성화
 conda deactivate
