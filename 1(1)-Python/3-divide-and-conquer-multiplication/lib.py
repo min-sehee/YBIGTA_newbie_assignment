@@ -66,33 +66,35 @@ class Matrix:
             for j in range(y):
                 for k in range(m):
                     result[i, j] += self[i, k] * matrix[k, j]
-                    result[i, j] %= self.MOD
 
         return result
 
     def __pow__(self, n: int) -> Matrix:
         """
-        분할정복을 이용해 행렬의 거듭제곱을 계산하는 메소드
+        분할정복을 이용하여 행렬의 거듭제곱을 계산하는 메소드
 
         Args:
             - n (int): 거듭제곱의 지수
 
         Returns:
-            - Matrix: 거듭제곱 결과 행렬
+            - (Matrix): 거듭제곱 결과 행렬
         """
 
         def divide_and_conquer(self, n: int) -> Matrix:
-            if n == 0:
-                x = self.shape[0]
-                return Matrix.eye(x)
-            elif n == 1:
+
+            if n == 1:
                 return self
             else:
                 half = divide_and_conquer(self, n//2)      
-                if n%2 == 0:
-                    return half @ half
-                else:
-                    return half @ half @ self
+                result = half @ half
+                if n % 2 == 1:
+                    result = result @ self
+
+                for i in range(result.shape[0]):
+                    for j in range(result.shape[1]):
+                            result[i, j] %= self.MOD
+
+            return result
                    
         return divide_and_conquer(self, n)
 

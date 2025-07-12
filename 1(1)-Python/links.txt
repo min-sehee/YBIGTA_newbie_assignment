@@ -7,7 +7,7 @@
 11866 https://www.acmicpc.net/source/96196638
 
 1629 https://www.acmicpc.net/source/96196583
-10830 https://www.acmicpc.net/source/96196650
+10830 https://www.acmicpc.net/source/96268586
 
 3080 
 5670 

@@ -52,8 +52,8 @@ def josephus_problem(n: int, k: int) -> list[int]:
 
     Returns:
         - result (list[int]): 사람들이 제거되는 순서를 저장한 리스트
-
     """
+    
     circle = create_circular_queue(n)
     result = []
 

@@ -66,7 +66,6 @@ class Matrix:
             for j in range(y):
                 for k in range(m):
                     result[i, j] += self[i, k] * matrix[k, j]
-                    result[i, j] %= self.MOD
 
         return result
 
@@ -82,17 +81,20 @@ class Matrix:
         """
 
         def divide_and_conquer(self, n: int) -> Matrix:
-            if n == 0:
-                x = self.shape[0]
-                return Matrix.eye(x)
-            elif n == 1:
+
+            if n == 1:
                 return self
             else:
                 half = divide_and_conquer(self, n//2)      
-                if n%2 == 0:
-                    return half @ half
-                else:
-                    return half @ half @ self
+                result = half @ half
+                if n % 2 == 1:
+                    result = result @ self
+
+                for i in range(result.shape[0]):
+                    for j in range(result.shape[1]):
+                            result[i, j] %= self.MOD
+
+            return result
                    
         return divide_and_conquer(self, n)
 
